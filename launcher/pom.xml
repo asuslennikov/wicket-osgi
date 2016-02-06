@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.jewelline.wicket</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>launcher</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Wicket launcher</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.main</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.main</artifactId>
+                                    <outputDirectory>${basedir}/bin</outputDirectory>
+                                    <destFileName>felix.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.scr</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.http.servlet-api</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.http.api</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.http.jetty</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.osgi</groupId>
+                                    <artifactId>org.osgi.service.cm</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.osgi</groupId>
+                                    <artifactId>org.osgi.service.event</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.log</artifactId>
+                                </artifactItem>
+
+                                <artifactItem>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>slf4j-api</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>slf4j-simple</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>commons-io</groupId>
+                                    <artifactId>commons-io</artifactId>
+                                </artifactItem>
+
+                                <artifactItem>
+                                    <groupId>org.apache.wicket</groupId>
+                                    <artifactId>wicket-core</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.wicket</groupId>
+                                    <artifactId>wicket-extensions</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.wicket</groupId>
+                                    <artifactId>wicket-request</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.wicket</groupId>
+                                    <artifactId>wicket-util</artifactId>
+                                </artifactItem>
+
+                                <!-- Our project -->
+                                <artifactItem>
+                                    <groupId>ru.jewelline.wicket</groupId>
+                                    <artifactId>project</artifactId>
+                                    <outputDirectory>${basedir}/deploy</outputDirectory>
+                                </artifactItem>
+
+                                <!-- Developers bundles, if disabled, do not forgot to copy the project from 'deploy' directory! -->
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.fileinstall</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.webconsole</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>commons-fileupload</groupId>
+                                    <artifactId>commons-fileupload</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.geronimo.bundles</groupId>
+                                    <artifactId>json</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.gogo.command</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.gogo.runtime</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.felix</groupId>
+                                    <artifactId>org.apache.felix.gogo.shell</artifactId>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${basedir}/bundle</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

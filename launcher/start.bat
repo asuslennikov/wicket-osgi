@@ -1,0 +1,1 @@
+java -cp bin/** org.apache.felix.main.Main
