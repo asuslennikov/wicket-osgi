@@ -6,8 +6,12 @@
 *.iws
 .DS_Store
 log/
-/target/
-/build/
+target/
+build/
 .gradle/
 bin/
 generated/
+launcher/bin/
+launcher/deploy/
+launcher/felix-cache
+launcher/bundle

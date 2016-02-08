@@ -4,6 +4,8 @@ import org.apache.wicket.Page;
 import org.apache.wicket.core.util.resource.ClassPathResourceFinder;
 import org.apache.wicket.protocol.http.WebApplication;
 import ru.jewelline.wicket.osgi.impl.pages.Index;
+import ru.jewelline.wicket.osgi.impl.utils.WicketClassResolver;
+import ru.jewelline.wicket.osgi.impl.utils.WicketTruncatedPathResourceFinder;
 
 public class WicketApplication extends WebApplication {
 
@@ -18,7 +20,9 @@ public class WicketApplication extends WebApplication {
     @Override
     protected void init() {
         super.init();
+        getApplicationSettings().setClassResolver(WicketClassResolver.getClassResolver());
         getResourceSettings().getResourceFinders().add(new WicketTruncatedPathResourceFinder(
                 new ClassPathResourceFinder(""), this.getClass().getPackage().getName().replace('.', '/')));
+        getMarkupSettings().setStripWicketTags(true);
     }
 }
