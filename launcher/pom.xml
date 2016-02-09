@@ -82,6 +82,26 @@
                                     <groupId>commons-io</groupId>
                                     <artifactId>commons-io</artifactId>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.google.guava</groupId>
+                                    <artifactId>guava</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.glassfish.hk2.external</groupId>
+                                    <artifactId>javax.inject</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.glassfish.hk2.external</groupId>
+                                    <artifactId>aopalliance-repackaged</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.google.inject</groupId>
+                                    <artifactId>guice</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.servicemix.bundles</groupId>
+                                    <artifactId>org.apache.servicemix.bundles.cglib</artifactId>
+                                </artifactItem>
 
                                 <artifactItem>
                                     <groupId>org.apache.wicket</groupId>
@@ -98,6 +118,14 @@
                                 <artifactItem>
                                     <groupId>org.apache.wicket</groupId>
                                     <artifactId>wicket-util</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.wicket</groupId>
+                                    <artifactId>wicket-ioc</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.wicket</groupId>
+                                    <artifactId>wicket-guice</artifactId>
                                 </artifactItem>
 
                                 <!-- Our project -->

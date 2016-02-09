@@ -1,6 +1,7 @@
 -classpath: target/classes
 -dsannotations: *
 Private-Package: \
+	ru.jewelline.wicket.osgi.services, \
 	ru.jewelline.wicket.osgi.install, \
 	ru.jewelline.wicket.osgi.impl, \
 	ru.jewelline.wicket.osgi.impl.*

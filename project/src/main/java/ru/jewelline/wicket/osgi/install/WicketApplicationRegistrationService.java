@@ -1,6 +1,6 @@
 package ru.jewelline.wicket.osgi.install;
 
-import org.osgi.framework.BundleContext;
+import org.apache.wicket.protocol.http.WicketServlet;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -15,24 +15,25 @@ import java.util.Hashtable;
 import java.util.logging.Logger;
 
 @Component(name = "ru.jewelline.wicket.osgi.install.WicketApplicationRegistrationService",
-        service = {WicketApplicationRegistrationService.class}, // Or GoGo will not find our command
-        property = {"osgi.command.scope=wicket", "osgi.command.function=wicketBasePath"},
+        service = {WicketApplicationRegistrationService.class},
+        property = {"osgi.command.scope=wicket", "osgi.command.function=wicketUrl"},
         immediate = true)
 public class WicketApplicationRegistrationService {
     public static final String WICKET_APPLICATION_URL_PREFIX = "/wicket";
 
     private volatile HttpService httpService;
+    private volatile WicketApplication wicketApplication;
 
-    @SuppressWarnings("unused")
-    // Default OSGI constructor
+    @SuppressWarnings("unused") // Default OSGI constructor
     public WicketApplicationRegistrationService() {
     }
 
     @Activate
-    public void activate(BundleContext context) {
+    @SuppressWarnings("unused") // OSGI
+    public void activate() {
         try {
-            Dictionary properties = new Hashtable<>();
-            properties.put("applicationClassName", WicketApplication.class.getName());
+            Dictionary<String, String> properties = new Hashtable<>();
+            properties.put("applicationFactoryClassName", WicketApplication.Factory.class.getName());
             properties.put("filterMappingUrlPattern", WICKET_APPLICATION_URL_PREFIX + "/*");
             ClassLoader ccl = Thread.currentThread().getContextClassLoader();
             Thread.currentThread().setContextClassLoader(WicketApplicationRegistrationService.class.getClassLoader());
@@ -45,16 +46,26 @@ public class WicketApplicationRegistrationService {
     }
 
     @Deactivate
+    @SuppressWarnings("unused") // OSGI
     public void deactivate() {
         this.httpService.unregister(WICKET_APPLICATION_URL_PREFIX);
     }
 
     @Reference
+    @SuppressWarnings("unused") // OSGI
     public void setHttpService(HttpService httpService) {
         this.httpService = httpService;
     }
 
-    public void wicketBasePath() {
+    @Reference
+    @SuppressWarnings("unused") // OSGI
+    public void setWicketApplication(WicketApplication wicketApplication) {
+        // Guarantees that WicketApplication was instantiated
+        this.wicketApplication = wicketApplication;
+    }
+
+    @SuppressWarnings("unused") // OSGI GoGo command
+    public void wicketUrl() {
         System.out.println(WICKET_APPLICATION_URL_PREFIX);
     }
 }
