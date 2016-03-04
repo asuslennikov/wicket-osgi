@@ -14,7 +14,7 @@ public class WicketTruncatedPathResourceFinder implements IResourceFinder {
 
     @Override
     public IResourceStream find(Class<?> aClass, String s) {
-        if (s != null && s.startsWith(truncationTemplate)){
+        if (s != null && s.startsWith(truncationTemplate) && truncationTemplate.length() > 0) {
             return this.baseFinder.find(aClass, s.substring(truncationTemplate.length()));
         }
         return this.baseFinder.find(aClass, s);

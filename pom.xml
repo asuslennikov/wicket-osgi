@@ -8,10 +8,25 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Apache wicket in OSGI environment</name>
+    <url>https://github.com/asuslennikov/wicket-osgi</url>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/asuslennikov/wicket-osgi</url>
+    </scm>
 
     <properties>
         <include.source>true</include.source>
-        <wicket.version>7.1.0</wicket.version>
+        <wicket.version>7.2.0</wicket.version>
+        <stage.development>false</stage.development>
+        <stage.production>false</stage.production>
     </properties>
 
     <dependencyManagement>
@@ -21,23 +36,27 @@
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.core</artifactId>
                 <version>6.0.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.osgi/org.osgi.core -->
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.compendium</artifactId>
                 <version>5.0.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.osgi/org.osgi.compendium -->
             </dependency>
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
                 <version>1.2</version>
                 <scope>provided</scope>
+                <!-- url: http://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>2.5</version>
                 <scope>provided</scope>
+                <!-- url: http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
             </dependency>
 
             <!-- Main launcher jar -->
@@ -45,6 +64,7 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.main</artifactId>
                 <version>5.4.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.main -->
             </dependency>
 
             <!-- Support for declarative OSGI services -->
@@ -52,6 +72,7 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.scr</artifactId>
                 <version>2.0.2</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.scr -->
             </dependency>
 
             <!-- Apache Felix HTTP Support -->
@@ -59,31 +80,37 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.http.servlet-api</artifactId>
                 <version>1.1.2</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.http.servlet-api -->
             </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.http.api</artifactId>
                 <version>3.0.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.http.api -->
             </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.http.jetty</artifactId>
                 <version>3.1.6</version>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.service.cm</artifactId>
-                <version>1.5.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.service.event</artifactId>
-                <version>1.3.1</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.http.jetty -->
             </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.log</artifactId>
                 <version>1.0.1</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.log -->
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.service.cm</artifactId>
+                <version>1.5.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.osgi/org.osgi.service.cm -->
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.service.event</artifactId>
+                <version>1.3.1</version>
+                <!-- url: http://mvnrepository.com/artifact/org.osgi/org.osgi.service.event -->
             </dependency>
 
             <!-- GoGo Commands support -->
@@ -91,16 +118,19 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.gogo.command</artifactId>
                 <version>0.16.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.gogo.command -->
             </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.gogo.runtime</artifactId>
                 <version>0.16.2</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.gogo.runtime -->
             </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.gogo.shell</artifactId>
                 <version>0.12.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.gogo.shell -->
             </dependency>
 
             <!-- Bundles for development -->
@@ -108,21 +138,25 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.fileinstall</artifactId>
                 <version>3.5.2</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.fileinstall -->
             </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.webconsole</artifactId>
                 <version>4.2.14</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.webconsole -->
             </dependency>
             <dependency> <!-- felix.webconsole dependency -->
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>1.3.1</version>
+                <!-- url: http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
             </dependency>
             <dependency> <!-- felix.webconsole dependency -->
                 <groupId>org.apache.geronimo.bundles</groupId>
                 <artifactId>json</artifactId>
                 <version>20090211_1</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.geronimo.bundles/json -->
             </dependency>
 
             <!-- Wicket dependencies -->
@@ -130,41 +164,49 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>1.7.14</version>
+                <!-- url: http://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
                 <version>1.7.14</version>
+                <!-- url: http://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>1.4</version>
+                <!-- url: http://mvnrepository.com/artifact/commons-io/commons-io -->
             </dependency>
             <dependency> <!-- Guice dependency -->
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>19.0</version>
+                <!-- url: http://mvnrepository.com/artifact/com.google.guava/guava -->
             </dependency>
             <dependency> <!-- Guice dependency -->
                 <groupId>org.glassfish.hk2.external</groupId>
                 <artifactId>javax.inject</artifactId>
                 <version>2.4.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.glassfish.hk2.external/javax.inject -->
             </dependency>
             <dependency> <!-- Guice dependency -->
                 <groupId>org.glassfish.hk2.external</groupId>
                 <artifactId>aopalliance-repackaged</artifactId>
                 <version>2.4.0</version>
+                <!-- url: http://mvnrepository.com/artifact/org.glassfish.hk2.external/aopalliance-repackaged -->
             </dependency>
             <dependency> <!-- Wicket-guice dependency -->
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>4.0</version>
+                <!-- url: http://mvnrepository.com/artifact/com.google.inject/guice -->
             </dependency>
             <dependency> <!-- Wicket-guice dependency -->
                 <groupId>org.apache.servicemix.bundles</groupId>
                 <artifactId>org.apache.servicemix.bundles.cglib</artifactId>
                 <version>3.2.0_1</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib -->
             </dependency>
 
             <!-- Wicket -->
@@ -172,31 +214,37 @@
                 <groupId>org.apache.wicket</groupId>
                 <artifactId>wicket-util</artifactId>
                 <version>${wicket.version}</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.wicket/wicket-util -->
             </dependency>
             <dependency>
                 <groupId>org.apache.wicket</groupId>
                 <artifactId>wicket-request</artifactId>
                 <version>${wicket.version}</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.wicket/wicket-request -->
             </dependency>
             <dependency>
                 <groupId>org.apache.wicket</groupId>
                 <artifactId>wicket-core</artifactId>
                 <version>${wicket.version}</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.wicket/wicket-core -->
             </dependency>
             <dependency>
                 <groupId>org.apache.wicket</groupId>
                 <artifactId>wicket-extensions</artifactId>
                 <version>${wicket.version}</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.wicket/wicket-extensions -->
             </dependency>
             <dependency>
                 <groupId>org.apache.wicket</groupId>
                 <artifactId>wicket-ioc</artifactId>
                 <version>${wicket.version}</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.wicket/wicket-ioc -->
             </dependency>
             <dependency>
                 <groupId>org.apache.wicket</groupId>
                 <artifactId>wicket-guice</artifactId>
                 <version>${wicket.version}</version>
+                <!-- url: http://mvnrepository.com/artifact/org.apache.wicket/wicket-guice -->
             </dependency>
 
             <!-- Our project -->
@@ -205,7 +253,6 @@
                 <artifactId>project</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -264,10 +311,33 @@
                         <target>1.8</target>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                    <executions>
+                        <execution>
+                            <id>copy-project</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <!-- Our project -->
+                                    <artifactItem>
+                                        <groupId>ru.jewelline.wicket</groupId>
+                                        <artifactId>project</artifactId>
+                                    </artifactItem>
+                                </artifactItems>
+                                <outputDirectory>${basedir}/../launcher/bundle</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
-
 
     <modules>
         <module>project</module>
@@ -277,9 +347,45 @@
     <profiles>
         <profile>
             <id>release</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <include.source>false</include.source>
+                <stage.development>false</stage.development>
+                <stage.production>true</stage.production>
             </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <include.source>true</include.source>
+                <stage.development>true</stage.development>
+                <stage.production>false</stage.production>
+            </properties>
+
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-dependency-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>copy-project</id>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>copy</goal>
+                                    </goals>
+                                    <configuration>
+                                        <outputDirectory>${basedir}/../launcher/deploy</outputDirectory>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
         </profile>
     </profiles>
 </project>

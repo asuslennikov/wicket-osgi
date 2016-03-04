@@ -7,6 +7,7 @@
         <groupId>ru.jewelline.wicket</groupId>
         <artifactId>parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <artifactId>launcher</artifactId>
@@ -23,12 +24,29 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/</directory>
+                            <includes>
+                                <include>bin/</include>
+                                <include>bundle/</include>
+                                <include>deploy/</include>
+                                <include>felix-cache/</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
                 <executions>
                     <execution>
-                        <id>copy</id>
+                        <id>copy-project-dependencies</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy</goal>
@@ -127,43 +145,6 @@
                                     <groupId>org.apache.wicket</groupId>
                                     <artifactId>wicket-guice</artifactId>
                                 </artifactItem>
-
-                                <!-- Our project -->
-                                <artifactItem>
-                                    <groupId>ru.jewelline.wicket</groupId>
-                                    <artifactId>project</artifactId>
-                                    <outputDirectory>${basedir}/deploy</outputDirectory>
-                                </artifactItem>
-
-                                <!-- Developers bundles, if disabled, do not forgot to copy the project from 'deploy' directory! -->
-                                <artifactItem>
-                                    <groupId>org.apache.felix</groupId>
-                                    <artifactId>org.apache.felix.fileinstall</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.felix</groupId>
-                                    <artifactId>org.apache.felix.webconsole</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>commons-fileupload</groupId>
-                                    <artifactId>commons-fileupload</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.geronimo.bundles</groupId>
-                                    <artifactId>json</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.felix</groupId>
-                                    <artifactId>org.apache.felix.gogo.command</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.felix</groupId>
-                                    <artifactId>org.apache.felix.gogo.runtime</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.felix</groupId>
-                                    <artifactId>org.apache.felix.gogo.shell</artifactId>
-                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${basedir}/bundle</outputDirectory>
                         </configuration>
@@ -172,4 +153,64 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>${stage.development}</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.10</version>
+                        <executions>
+                            <execution>
+                                <id>copy-project-dependencies</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- Additional dependencies for comfort development -->
+                                    <artifactItems combine.children="append">
+                                        <artifactItem>
+                                            <groupId>org.apache.felix</groupId>
+                                            <artifactId>org.apache.felix.fileinstall</artifactId>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.apache.felix</groupId>
+                                            <artifactId>org.apache.felix.webconsole</artifactId>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>commons-fileupload</groupId>
+                                            <artifactId>commons-fileupload</artifactId>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.apache.geronimo.bundles</groupId>
+                                            <artifactId>json</artifactId>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.apache.felix</groupId>
+                                            <artifactId>org.apache.felix.gogo.command</artifactId>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.apache.felix</groupId>
+                                            <artifactId>org.apache.felix.gogo.runtime</artifactId>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.apache.felix</groupId>
+                                            <artifactId>org.apache.felix.gogo.shell</artifactId>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
