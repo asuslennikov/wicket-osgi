@@ -7,6 +7,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
+import ru.jewelline.wicket.osgi.impl.BuildProperties;
 import ru.jewelline.wicket.osgi.impl.WicketApplication;
 
 import javax.servlet.ServletException;
@@ -35,6 +36,9 @@ public class WicketApplicationRegistrationService {
             Dictionary<String, String> properties = new Hashtable<>();
             properties.put("applicationFactoryClassName", WicketApplication.Factory.class.getName());
             properties.put("filterMappingUrlPattern", WICKET_APPLICATION_URL_PREFIX + "/*");
+            properties.put("configuration", BuildProperties.getInstance().isWicketInDevelopmentStage()
+                    ? "development"
+                    : "deployment");
             ClassLoader ccl = Thread.currentThread().getContextClassLoader();
             Thread.currentThread().setContextClassLoader(WicketApplicationRegistrationService.class.getClassLoader());
             this.httpService.registerServlet(WICKET_APPLICATION_URL_PREFIX, new WicketServlet(), properties, null);
